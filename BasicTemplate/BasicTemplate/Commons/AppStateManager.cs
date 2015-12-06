@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BasicTemplate.Commons
 {
+    //アプリの状態を変更するマネージャ
     public class AppStateManager
     {
         public Dictionary<AppState, double> StateList { get; set; }

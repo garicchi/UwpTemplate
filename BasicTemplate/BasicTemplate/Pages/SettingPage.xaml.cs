@@ -28,15 +28,28 @@ namespace BasicTemplate.Pages
             this.InitializeComponent();
         }
 
-        private async void buttonSettingOK_Click(object sender, RoutedEventArgs e)
+        //設定ページに遷移してきたとき
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //このようなコードでコントロールの値を取得します
-            //var text = textBoxSetting1.Text;
-            //var isOK = toggleSwitchSetting2.IsOn;
+            base.OnNavigatedTo(e);
 
-            //このようなコードでダイアログを表示します
-            var dialog = new MessageDialog("設定を適用しました");
-            await dialog.ShowAsync();
+            //現在の設定をUIに反映する
+            textBoxSetting1.Text = App.Setting.SettingContent1;
+            toggleSwitchSetting2.IsOn = App.Setting.SettingContent2;
+        }
+
+        //設定1のテキストボックスの内容が変わったとき
+        private void textBoxSetting1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //設定に反映
+            App.Setting.SettingContent1 = textBoxSetting1.Text;
+        }
+
+        //設定2のトグルスイッチの内容が変わったとき
+        private void toggleSwitchSetting2_Toggled(object sender, RoutedEventArgs e)
+        {
+            //設定に反映
+            App.Setting.SettingContent2 = toggleSwitchSetting2.IsOn;
         }
     }
 }

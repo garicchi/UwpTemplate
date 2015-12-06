@@ -1,11 +1,14 @@
 ﻿using BasicTemplate.Commons;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -31,19 +34,17 @@ namespace BasicTemplate.Pages
             //バックボタンをフックする
             SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
 
-            //アプリのライフサイクルをフック
-            App.Current.Resuming += Current_Resuming;
-            App.Current.Suspending += Current_Suspending;
+            //アプリの状態が変わったとき、VisualStateManagerを変更する
             App.OnChangeAppState += (state, prev) =>
             {
                 switch (state)
                 {
                     case AppState.Mobile:
-                        
+
                         VisualStateManager.GoToState(this, "MobileState", true);
                         break;
                     case AppState.Normal:
-                        
+
                         VisualStateManager.GoToState(this, "NormalState", true);
 
                         break;
@@ -53,6 +54,7 @@ namespace BasicTemplate.Pages
                         break;
                 }
             };
+
         }
 
         //ページが読み込まれた時
@@ -87,34 +89,16 @@ namespace BasicTemplate.Pages
             splitView.IsPaneOpen = false;
         }
 
-        //アプリが一時停止しようとしたとき
-        private void Current_Suspending(object sender, Windows.ApplicationModel.SuspendingEventArgs e)
-        {
-            var deferral = e.SuspendingOperation.GetDeferral();
-            //ここでアプリのデータや状態を保存するdeferral.Complete()が呼ばれるまではawaitしても待ってくれる
-            //例 ApplicationData.Current.LocalSettings.Values["MyData"] = 1;
-
-            deferral.Complete();
-        }
-
-        //アプリが再開しようとしたとき
-        private void Current_Resuming(object sender, object e)
-        {
-            //ここでアプリのデータや状態を復元する
-            /*例
-            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("MyData"))
-            {
-                var data = ApplicationData.Current.LocalSettings.Values["MyData"];
-            }
-            */
-        }
+        
 
         //バックボタンが押された時
         private void MainPage_BackRequested(object sender, BackRequestedEventArgs e)
         {
             if (frameContent.CanGoBack)
             {
+                //HandledをtrueにすることでWindows10Mobileのバックボタンで終了しなくなる
                 e.Handled = true;
+                //コンテンツを表示しているFrameをBack
                 frameContent.GoBack();
             }
         }

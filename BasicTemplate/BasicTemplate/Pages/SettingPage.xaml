@@ -24,10 +24,9 @@
             <PivotItem Header="全般">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="設定1" FontSize="18.667" />
-                    <TextBox x:Name="textBoxSetting1" Width="200" HorizontalAlignment="Left" />
+                    <TextBox x:Name="textBoxSetting1" Width="200" HorizontalAlignment="Left" TextChanged="textBoxSetting1_TextChanged" />
                     <TextBlock Text="設定2" FontSize="18.667" />
-                    <ToggleSwitch x:Name="toggleSwitchSetting2" />
-                    <Button x:Name="buttonSettingOK" Content="適用" Click="buttonSettingOK_Click" />
+                    <ToggleSwitch x:Name="toggleSwitchSetting2" Toggled="toggleSwitchSetting2_Toggled" />
                 </StackPanel>
             </PivotItem>
             <PivotItem Header="このアプリについて">

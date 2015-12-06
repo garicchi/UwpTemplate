@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace BasicTemplate.Commons
 {
+    //アプリの状態
+    //モバイルと通常、ワイド状態を定義
     public enum AppState
     {
         Mobile, Normal, Wide
