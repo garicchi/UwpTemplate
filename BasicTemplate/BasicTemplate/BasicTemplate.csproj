@@ -98,6 +98,7 @@
     </Compile>
     <Compile Include="Commons\AppState.cs" />
     <Compile Include="Commons\AppStateManager.cs" />
+    <Compile Include="Commons\NotificationManager.cs" />
     <Compile Include="Commons\Settings.cs" />
     <Compile Include="Pages\FavoritePage.xaml.cs">
       <DependentUpon>FavoritePage.xaml</DependentUpon>

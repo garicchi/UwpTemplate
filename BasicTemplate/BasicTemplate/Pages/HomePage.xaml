@@ -40,5 +40,8 @@
                 <AppBarButton Icon="Add" Label="Add" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
+        <Button x:Name="button_1" Content="Button" HorizontalAlignment="Left" Margin="194,191,0,0" Grid.Row="1" VerticalAlignment="Top" Click="button_1_Click"/>
+        <TextBox x:Name="textBox_1" HorizontalAlignment="Left" Margin="37,127,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="222"/>
+        <Button x:Name="button_notify" Content="Notify" HorizontalAlignment="Left" Margin="378,191,0,0" Grid.Row="1" VerticalAlignment="Top" Click="button_notify_Click"/>
     </Grid>
 </Page>
