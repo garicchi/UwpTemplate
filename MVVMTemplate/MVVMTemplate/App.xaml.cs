@@ -1,10 +1,16 @@
-﻿using MVVMTemplate.Commons;
+﻿using Microsoft.Practices.ServiceLocation;
+using MVVMTemplate.Commons;
+using MVVMTemplate.Models;
 using MVVMTemplate.Pages;
+using MVVMTemplate.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -28,8 +34,7 @@ namespace MVVMTemplate
         public static AppStateManager StateManager { get; set; }
         //アプリの状態が変わったときに変更を通知するイベント
         public static event Action<AppState, AppState> OnChangeAppState;
-        //アプリの設定
-        public static Settings Setting { get; set; }
+
         //アプリの最小幅を定義する
         private Size _appMinimumSize = new Size(340, 400);
 
@@ -42,8 +47,6 @@ namespace MVVMTemplate
             StateManager.StateList.Add(AppState.Mobile, 0);
             StateManager.StateList.Add(AppState.Normal, 600);
             StateManager.StateList.Add(AppState.Wide, 1200);
-            //設定を初期化
-            Setting = new Settings();
 
             OnChangeAppState += (s, s2) => { };
 
@@ -54,7 +57,7 @@ namespace MVVMTemplate
         }
 
         //アプリが起動したとき
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
 
 #if DEBUG
@@ -74,8 +77,9 @@ namespace MVVMTemplate
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //以前中断したアプリケーションから状態を読み込む
-                    DataLoad();
+                    
                 }
+                
 
                 Window.Current.Content = rootFrame;
             }
@@ -96,6 +100,7 @@ namespace MVVMTemplate
             }
 
             Window.Current.Activate();
+            await DataLoadAsync();
         }
 
         //ウインドウサイズが変更されたとき、それに応じてアプリの状態を変える
@@ -120,59 +125,43 @@ namespace MVVMTemplate
         }
 
         //アプリが一時停止しようとしたとき
-        private void App_Suspending(object sender, Windows.ApplicationModel.SuspendingEventArgs e)
+        private async void App_Suspending(object sender, Windows.ApplicationModel.SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             //ここでアプリのデータや状態を保存するdeferral.Complete()が呼ばれるまではawaitしても待ってくれる
 
-            DataSave();
+            await DataSaveAsync();
             deferral.Complete();
         }
 
         //アプリが再開しようとしたとき
-        private void App_Resuming(object sender, object e)
+        private async void App_Resuming(object sender, object e)
         {
             //ここでアプリのデータや状態を復元する
 
-            DataLoad();
+            await DataLoadAsync();
         }
 
         //アプリのデータを保存するメソッド
         //App_Suspendingから呼ばれる
-        private void DataSave()
+        private async Task DataSaveAsync()
         {
-            /*LocalSettingsを使う場合*/
-            ApplicationData.Current.LocalSettings.Values["SettingContent1"] = App.Setting.SettingContent1;
-            ApplicationData.Current.LocalSettings.Values["SettingContent2"] = App.Setting.SettingContent2;
-
-            /*ファイルにデータを書き込む場合
-
-            string saveData = "";
+            /*ファイルにデータを書き込む場合*/
+            var viewModel = ServiceLocator.Current.GetInstance<MainViewModel>();
+            string saveData = JsonConvert.SerializeObject(viewModel.MainModel);
             var folder = ApplicationData.Current.LocalFolder;
             var file = await folder.CreateFileAsync("SaveFile", CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(file, saveData);
-            */
+            
         }
 
         //アプリのデータを復元するメソッド
         //App_ResumingとOnLaunchedから呼ばれる
         //正常復元した場合はtrue、アプリのデータがなかったか、復元失敗した場合はfalseを返す
-        private bool DataLoad()
+        private async Task<bool> DataLoadAsync()
         {
-            /*LocalSettingsを使う場合*/
-            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("SettingContent1"))
-            {
-                App.Setting.SettingContent1 = ApplicationData.Current.LocalSettings.Values["SettingContent1"].ToString();
-                App.Setting.SettingContent2 = bool.Parse(ApplicationData.Current.LocalSettings.Values["SettingContent2"].ToString());
-                return true;
-            }
-            else
-            {
-                return false;
-            }
 
-
-            /*ファイルからデータをロードする場合
+            /*ファイルからデータをロードする場合*/
             var folder = ApplicationData.Current.LocalFolder;
             var files = await folder.GetFilesAsync();
             if (files.Any(q => q.Name == "SaveFile"))
@@ -181,18 +170,18 @@ namespace MVVMTemplate
                 {
                     var file = files.First(q => q.Name == "SaveFile");
                     var saveData = await FileIO.ReadTextAsync(file);
-                    
-
+                    var model = (MainModel)JsonConvert.DeserializeObject(saveData,typeof(MainModel));
+                    ServiceLocator.Current.GetInstance<MainViewModel>().MainModel = model;
                     return true;
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     Debug.WriteLine("データ復元に失敗しました");
                 }
             }
             
             return false;
-            */
+            
 
         }
     }

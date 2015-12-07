@@ -99,9 +99,10 @@
     <Compile Include="Commons\AppState.cs" />
     <Compile Include="Commons\AppStateManager.cs" />
     <Compile Include="Commons\NotificationManager.cs" />
-    <Compile Include="Commons\Settings.cs" />
     <Compile Include="Commons\ViewModelLocator.cs" />
     <Compile Include="Models\CalcModel.cs" />
+    <Compile Include="Models\MainModel.cs" />
+    <Compile Include="Models\SettingsModel.cs" />
     <Compile Include="Pages\FavoritePage.xaml.cs">
       <DependentUpon>FavoritePage.xaml</DependentUpon>
     </Compile>

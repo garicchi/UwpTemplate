@@ -29,20 +29,6 @@ namespace MVVMTemplate.Pages
             this.InitializeComponent();
         }
 
-        //button1がクリックされたとき
-        private async void button_1_Click(object sender, RoutedEventArgs e)
-        {
-            //このようなコードでテキストボックスの値を取得
-            string text1 = textBox_1.Text;
-
-            //ダイアログで表示
-            var dialog = new MessageDialog(text1);
-            await dialog.ShowAsync();
-        }
-
-        private void button_notify_Click(object sender, RoutedEventArgs e)
-        {
-            NotificationManager.SendBasicToast("テスト通知");
-        }
+        
     }
 }

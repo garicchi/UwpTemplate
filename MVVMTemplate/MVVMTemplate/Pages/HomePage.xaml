@@ -5,7 +5,9 @@
     xmlns:local="using:MVVMTemplate.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    DataContext="{Binding Main,Source={StaticResource ViewModelLocator}}"
+    >
 
     <Page.Transitions>
         <TransitionCollection>
@@ -23,25 +25,24 @@
             <TextBlock Text="ホーム" VerticalAlignment="Center" FontSize="24" Padding="10,0,0,0" />
 
         </Grid>
-        <Hub Header="Hub" Grid.Row="1">
-            <HubSection Header="HubSection 0">
-                <DataTemplate>
-                    <Grid/>
-                </DataTemplate>
-            </HubSection>
-            <HubSection Header="HubSection 1">
-                <DataTemplate>
-                    <Grid/>
-                </DataTemplate>
-            </HubSection>
-        </Hub>
+        <Grid Grid.Row="1">
+            <TextBlock HorizontalAlignment="Left" Margin="60,57,0,0" TextWrapping="Wrap" Text="Num1" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="225,57,0,0" TextWrapping="Wrap" Text="Num2" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="443,57,0,0" TextWrapping="Wrap" Text="Result" VerticalAlignment="Top"/>
+            <TextBox Text="{Binding MainModel.CalcModel.Num1,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="60,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="109"/>
+            <TextBox Text="{Binding MainModel.CalcModel.Num2,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="225,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="109"/>
+            <TextBox Text="{Binding MainModel.CalcModel.Result,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="443,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"/>
+            <Button Command="{Binding SumCommand}" Content="足し算" HorizontalAlignment="Left" Margin="104,182,0,0" VerticalAlignment="Top"/>
+            <Button Command="{Binding SubCommand}" Content="引き算" HorizontalAlignment="Left" Margin="222,182,0,0" VerticalAlignment="Top"/>
+            <Button Command="{Binding MulCommand}" Content="掛け算" HorizontalAlignment="Left" Margin="350,182,0,0" VerticalAlignment="Top"/>
+            <Button Command="{Binding DivCommand}" Content="割り算" HorizontalAlignment="Left" Margin="475,182,0,0" VerticalAlignment="Top"/>
+
+        </Grid>
         <CommandBar VerticalAlignment="Bottom" Grid.Row="1">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Add" Label="Add" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
-        <Button x:Name="button_1" Content="Button" HorizontalAlignment="Left" Margin="194,191,0,0" Grid.Row="1" VerticalAlignment="Top" Click="button_1_Click"/>
-        <TextBox x:Name="textBox_1" HorizontalAlignment="Left" Margin="37,127,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="222"/>
-        <Button x:Name="button_notify" Content="Notify" HorizontalAlignment="Left" Margin="378,191,0,0" Grid.Row="1" VerticalAlignment="Top" Click="button_notify_Click"/>
+        
     </Grid>
 </Page>

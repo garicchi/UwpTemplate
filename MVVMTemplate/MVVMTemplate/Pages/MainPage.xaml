@@ -56,7 +56,7 @@
                 <FontIcon Glyph="{StaticResource SplitViewButtonGlyph}" Foreground="White" />
             </ToggleButton>
             <!--検索ボックス-->
-            <AutoSuggestBox x:Name="suggestBoxSearch" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" QueryIcon="Zoom" PlaceholderText="Search" Grid.Column="2" Height="32" Text="{Binding SearchQuery,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" QuerySubmitted="suggestBoxSearch_QuerySubmitted"/>
+            <AutoSuggestBox x:Name="suggestBoxSearch" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" QueryIcon="Zoom" PlaceholderText="Search" Grid.Column="2" Height="32" Text="{Binding MainModel.SearchQuery,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" QuerySubmitted="suggestBoxSearch_QuerySubmitted"/>
 
         </Grid>
         <!--SplitView IsOpenPaneとDisplayModeで様々な画面に対応します-->

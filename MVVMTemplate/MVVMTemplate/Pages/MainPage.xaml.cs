@@ -1,4 +1,5 @@
-﻿using MVVMTemplate.Commons;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MVVMTemplate.Commons;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -54,6 +55,12 @@ namespace MVVMTemplate.Pages
                         break;
                 }
             };
+
+            Messenger.Default.Register<string>(this, "complete", (message) =>
+            {
+                NotificationManager.SendBasicToast(message);
+            });
+        
 
         }
 
