@@ -16,3 +16,8 @@ Universal Windows Appのプロジェクトテンプレートです
 ディレクトリ以下に置きます
 
 あとはVisualStudioの新規プロジェクトからダウンロードしたテンプレートを選択すればOK
+
+# どんなの？
+## BasicTemplate
+スタンダードなUWPテンプレート、ハンバーガーメニュー付きでできるだけデフォルトのUWPに似せました
+![basic](https://raw.githubusercontent.com/garicchi/UwpTemplate/master/BasicTemplate/preview.png)
