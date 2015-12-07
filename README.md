@@ -25,3 +25,7 @@ Universal Windows Appのプロジェクトテンプレートです
 ## BasicTemplate
 スタンダードなUWPテンプレート、ハンバーガーメニュー付きでできるだけデフォルトのUWPに似せました
 ![basic](https://raw.githubusercontent.com/garicchi/UwpTemplate/master/BasicTemplate/preview.png)
+
+## MVVMTemplate
+MVVMlightとJson.Netを使ったシンプルなMVVMテンプレートです
+![mvvm](https://raw.githubusercontent.com/garicchi/UwpTemplate/master/MVVMTemplate/preview.png)
