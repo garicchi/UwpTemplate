@@ -17,6 +17,9 @@ Universal Windows Appのプロジェクトテンプレートです
 
 あとはVisualStudioの新規プロジェクトからダウンロードしたテンプレートを選択すればOK
 
+デバッグするときはターゲットをX86とかに変更してください
+![target](https://raw.githubusercontent.com/garicchi/UwpTemplate/master/target.png)
+
 # どんなの？
 ## BasicTemplate
 スタンダードなUWPテンプレート、ハンバーガーメニュー付きでできるだけデフォルトのUWPに似せました
