@@ -8,7 +8,7 @@
     <Application.Resources>
         <common:ViewModelLocator x:Key="ViewModelLocator" />
         <!--アプリケーションのテーマ色を定義-->
-        <SolidColorBrush x:Key="ApplicationThemeBrush" Color="#FFCC2982"/>
+        <SolidColorBrush x:Key="ApplicationThemeBrush" Color="#FF0079C2"/>
 
         <!-- SplitViewのリソースを定義-->
         <x:String x:Key="SplitViewButtonGlyph">&#xE700;</x:String>
