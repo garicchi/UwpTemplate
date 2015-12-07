@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{4F7137E2-C87A-47C6-8FCB-F967293AC10C}</ProjectGuid>
+    <ProjectGuid>{A7EE1C1F-7897-4DB1-AD04-1F42916C16F8}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MVVMTemplate</RootNamespace>
