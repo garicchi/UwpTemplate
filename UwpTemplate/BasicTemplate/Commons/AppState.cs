@@ -10,6 +10,6 @@ namespace BasicTemplate.Commons
     //モバイルと通常、ワイド状態を定義
     public enum AppState
     {
-        Mobile, Normal, Wide
+        Init,Mobile, Normal, Wide
     }
 }

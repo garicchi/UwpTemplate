@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MVVMTemplate.Commons
+namespace $safeprojectname$.Commons
 {
     //アプリの状態
     //モバイルと通常、ワイド状態を定義
     public enum AppState
     {
-        Init,Mobile, Normal, Wide
+        Mobile, Normal, Wide
     }
 }

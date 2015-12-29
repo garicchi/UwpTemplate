@@ -1,5 +1,5 @@
-﻿using BasicTemplate.Commons;
-using BasicTemplate.Pages;
+﻿using $safeprojectname$.Commons;
+using $safeprojectname$.Pages;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,7 +20,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace BasicTemplate
+namespace $safeprojectname$
 {
     sealed partial class App : Application
     {
@@ -91,9 +91,8 @@ namespace BasicTemplate
                 };
                 //MainPageへNavigate
                 rootFrame.Navigate(typeof(MainPage), e.Arguments);
-
+              　
                 OnWindowSizeChanged(new Size(Window.Current.Bounds.Width, Window.Current.Bounds.Height));
-
             }
 
             Window.Current.Activate();

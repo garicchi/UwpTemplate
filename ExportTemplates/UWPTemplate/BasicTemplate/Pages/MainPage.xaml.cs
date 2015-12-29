@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight.Messaging;
-using MVVMTemplate.Commons;
+﻿using $safeprojectname$.Commons;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,7 +20,7 @@ using Windows.UI.Xaml.Navigation;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 を参照してください
 
-namespace MVVMTemplate.Pages
+namespace $safeprojectname$.Pages
 {
     /// <summary>
     /// それ自体で使用できる空白ページまたはフレーム内に移動できる空白ページ。
@@ -42,25 +41,19 @@ namespace MVVMTemplate.Pages
                 {
                     case AppState.Mobile:
 
-                        VisualStateManager.GoToState(this, "MobileState", false);
+                        VisualStateManager.GoToState(this, "MobileState", true);
                         break;
                     case AppState.Normal:
 
-                        VisualStateManager.GoToState(this, "NormalState", false);
+                        VisualStateManager.GoToState(this, "NormalState", true);
 
                         break;
                     case AppState.Wide:
-                        VisualStateManager.GoToState(this, "WideState", false);
+                        VisualStateManager.GoToState(this, "WideState", true);
 
                         break;
                 }
             };
-
-            Messenger.Default.Register<string>(this, "complete", (message) =>
-            {
-                NotificationManager.SendBasicToast(message);
-            });
-        
 
         }
 
@@ -96,7 +89,7 @@ namespace MVVMTemplate.Pages
             splitView.IsPaneOpen = false;
         }
 
-
+        
 
         //バックボタンが押された時
         private void MainPage_BackRequested(object sender, BackRequestedEventArgs e)

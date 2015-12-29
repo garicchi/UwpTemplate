@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BasicTemplate.Commons
+namespace $safeprojectname$.Commons
 {
     //アプリの状態を変更するマネージャ
     public class AppStateManager
@@ -15,7 +15,6 @@ namespace BasicTemplate.Commons
         public AppStateManager()
         {
             StateList = new Dictionary<AppState, double>();
-            CurrentState = AppState.Init;
         }
 
         public bool TryChangeState(double windowWidth)
