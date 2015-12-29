@@ -91,8 +91,9 @@ namespace $safeprojectname$
                 };
                 //MainPageへNavigate
                 rootFrame.Navigate(typeof(MainPage), e.Arguments);
-              　
+
                 OnWindowSizeChanged(new Size(Window.Current.Bounds.Width, Window.Current.Bounds.Height));
+
             }
 
             Window.Current.Activate();

@@ -42,15 +42,15 @@ namespace $safeprojectname$.Pages
                 {
                     case AppState.Mobile:
 
-                        VisualStateManager.GoToState(this, "MobileState", true);
+                        VisualStateManager.GoToState(this, "MobileState", false);
                         break;
                     case AppState.Normal:
 
-                        VisualStateManager.GoToState(this, "NormalState", true);
+                        VisualStateManager.GoToState(this, "NormalState", false);
 
                         break;
                     case AppState.Wide:
-                        VisualStateManager.GoToState(this, "WideState", true);
+                        VisualStateManager.GoToState(this, "WideState", false);
 
                         break;
                 }
